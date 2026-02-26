@@ -1094,8 +1094,21 @@
                 justify-content: center;
             }
 
-            /* Hide animated iframe on mobile - too complex */
+            /* Responsive hero visual on mobile */
             .hero-visual {
+                width: 100%;
+                height: 350px;
+                margin-top: 40px;
+            }
+
+            .hero-visual iframe {
+                transform: scale(0.5);
+                transform-origin: top left;
+                width: 200%;
+                height: 6000px;
+            }
+
+            .feature-callouts {
                 display: none;
             }
 

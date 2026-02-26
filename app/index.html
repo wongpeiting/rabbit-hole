@@ -2106,6 +2106,147 @@
             50% { opacity: 0.4; }
         }
 
+        /* Rolling News Feed */
+        .news-feed-section {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .news-feed-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-lg);
+        }
+
+        .news-feed-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .news-feed-live {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            border-radius: 12px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--success);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .news-feed-live-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: livePulse 1.5s infinite;
+        }
+
+        .news-feed-container {
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+        }
+
+        .news-feed-scroll {
+            display: flex;
+            animation: scrollNews 30s linear infinite;
+        }
+
+        .news-feed-scroll:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollNews {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .news-item {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md) var(--space-lg);
+            border-right: 1px solid var(--border-subtle);
+            min-width: 350px;
+            cursor: pointer;
+            transition: background var(--transition-fast);
+        }
+
+        .news-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .news-item-time {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .news-item-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .news-item-headline {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 2px;
+        }
+
+        .news-item-source {
+            font-size: 11px;
+            color: var(--text-tertiary);
+        }
+
+        .news-item-tag {
+            padding: 2px 8px;
+            background: var(--accent-muted);
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .news-item-tag.alert {
+            background: rgba(248, 113, 113, 0.15);
+            color: var(--error);
+        }
+
+        .news-item-tag.deal {
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8;
+        }
+
+        .news-item-tag.regulatory {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--warning);
+        }
+
         /* Footer */
         .content-footer {
             margin-top: var(--space-2xl);
@@ -2383,6 +2524,41 @@
             /* Jargon grid mobile */
             .jargon-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* News feed mobile */
+            .news-feed-section {
+                width: 100%;
+                margin-top: var(--space-xl);
+            }
+
+            .news-feed-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-sm);
+            }
+
+            .news-feed-container {
+                border-radius: 8px;
+            }
+
+            .news-item {
+                min-width: 280px;
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .news-item-headline {
+                font-size: 12px;
+                white-space: normal;
+                line-height: 1.4;
+            }
+
+            .news-item-time {
+                font-size: 9px;
+            }
+
+            .news-item-source {
+                font-size: 10px;
             }
 
             /* Healthcare primer mobile */
@@ -3419,6 +3595,121 @@
                                         <div class="timeline-date">FEB 2026</div>
                                         <div class="timeline-title">High-dose Zepbound approved</div>
                                         <div class="timeline-desc">26% average weight loss. Efficacy bar raised again.<span class="citation" title="STAT News, Feb 24 2026">[3]</span></div>
+                                    </div>
+                                </div>
+
+                                <!-- Rolling News Feed -->
+                                <div class="news-feed-section">
+                                    <div class="news-feed-header">
+                                        <div class="news-feed-title">
+                                            📰 Latest Healthcare News
+                                        </div>
+                                        <div class="news-feed-live">
+                                            <span class="news-feed-live-dot"></span>
+                                            Live Feed
+                                        </div>
+                                    </div>
+                                    <div class="news-feed-container">
+                                        <div class="news-feed-scroll">
+                                            <!-- First set of news items -->
+                                            <div class="news-item">
+                                                <span class="news-item-time">2h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">Novo Nordisk reports Q4 Wegovy revenue up 89% YoY</div>
+                                                    <div class="news-item-source">Reuters</div>
+                                                </div>
+                                                <span class="news-item-tag">Earnings</span>
+                                            </div>
+                                            <div class="news-item">
+                                                <span class="news-item-time">3h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">FDA issues warning letter to 3 GLP-1 compounding pharmacies</div>
+                                                    <div class="news-item-source">STAT News</div>
+                                                </div>
+                                                <span class="news-item-tag regulatory">Regulatory</span>
+                                            </div>
+                                            <div class="news-item">
+                                                <span class="news-item-time">5h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">UnitedHealth expands Zepbound coverage to all commercial plans</div>
+                                                    <div class="news-item-source">Healthcare Dive</div>
+                                                </div>
+                                                <span class="news-item-tag deal">Coverage</span>
+                                            </div>
+                                            <div class="news-item">
+                                                <span class="news-item-time">6h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">Amgen's obesity drug MariTide shows 20% weight loss in Phase 2</div>
+                                                    <div class="news-item-source">BioPharma Dive</div>
+                                                </div>
+                                                <span class="news-item-tag">Clinical</span>
+                                            </div>
+                                            <div class="news-item">
+                                                <span class="news-item-time">8h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">CVS reports GLP-1 spend now 12% of total pharmacy costs</div>
+                                                    <div class="news-item-source">Bloomberg</div>
+                                                </div>
+                                                <span class="news-item-tag alert">Alert</span>
+                                            </div>
+                                            <div class="news-item">
+                                                <span class="news-item-time">10h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">Lilly begins Phase 3 trial of oral tirzepatide formulation</div>
+                                                    <div class="news-item-source">Endpoints News</div>
+                                                </div>
+                                                <span class="news-item-tag">Clinical</span>
+                                            </div>
+                                            <!-- Duplicate set for seamless scrolling -->
+                                            <div class="news-item">
+                                                <span class="news-item-time">2h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">Novo Nordisk reports Q4 Wegovy revenue up 89% YoY</div>
+                                                    <div class="news-item-source">Reuters</div>
+                                                </div>
+                                                <span class="news-item-tag">Earnings</span>
+                                            </div>
+                                            <div class="news-item">
+                                                <span class="news-item-time">3h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">FDA issues warning letter to 3 GLP-1 compounding pharmacies</div>
+                                                    <div class="news-item-source">STAT News</div>
+                                                </div>
+                                                <span class="news-item-tag regulatory">Regulatory</span>
+                                            </div>
+                                            <div class="news-item">
+                                                <span class="news-item-time">5h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">UnitedHealth expands Zepbound coverage to all commercial plans</div>
+                                                    <div class="news-item-source">Healthcare Dive</div>
+                                                </div>
+                                                <span class="news-item-tag deal">Coverage</span>
+                                            </div>
+                                            <div class="news-item">
+                                                <span class="news-item-time">6h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">Amgen's obesity drug MariTide shows 20% weight loss in Phase 2</div>
+                                                    <div class="news-item-source">BioPharma Dive</div>
+                                                </div>
+                                                <span class="news-item-tag">Clinical</span>
+                                            </div>
+                                            <div class="news-item">
+                                                <span class="news-item-time">8h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">CVS reports GLP-1 spend now 12% of total pharmacy costs</div>
+                                                    <div class="news-item-source">Bloomberg</div>
+                                                </div>
+                                                <span class="news-item-tag alert">Alert</span>
+                                            </div>
+                                            <div class="news-item">
+                                                <span class="news-item-time">10h ago</span>
+                                                <div class="news-item-content">
+                                                    <div class="news-item-headline">Lilly begins Phase 3 trial of oral tirzepatide formulation</div>
+                                                    <div class="news-item-source">Endpoints News</div>
+                                                </div>
+                                                <span class="news-item-tag">Clinical</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

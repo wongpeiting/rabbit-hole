@@ -2343,9 +2343,19 @@
 
         /* Mobile breakpoint */
         @media (max-width: 768px) {
-            /* Prevent horizontal overflow */
-            html, body {
+            /* FORCE prevent horizontal overflow on ALL elements */
+            *, *::before, *::after {
+                max-width: 100vw;
+                box-sizing: border-box;
+            }
+
+            html {
                 overflow-x: hidden;
+            }
+
+            body {
+                overflow-x: hidden;
+                width: 100%;
                 max-width: 100vw;
             }
 
@@ -2376,6 +2386,18 @@
 
             .primer-view {
                 overflow-x: hidden;
+                width: 100%;
+            }
+
+            .primer-hero,
+            .primer-content,
+            .primer-body,
+            .primer-section,
+            .section-content,
+            .money-flow-diagram {
+                overflow-x: hidden;
+                max-width: 100%;
+                width: 100%;
             }
 
             /* Mobile header adjustments */
@@ -2485,12 +2507,21 @@
             .data-table-wrapper {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
-                margin: var(--space-lg) calc(-1 * var(--space-md));
-                padding: 0 var(--space-md);
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
             }
 
             .data-table {
-                min-width: 500px;
+                min-width: auto;
+                width: 100%;
+                font-size: 11px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: var(--space-sm);
+                word-break: break-word;
             }
 
             /* Primer layout mobile */
@@ -2604,14 +2635,25 @@
             .primer-body {
                 max-width: 100%;
                 width: 100%;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
             }
 
             .primer-section {
                 width: 100%;
+                overflow-wrap: break-word;
             }
 
             .section-content {
                 width: 100%;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+            }
+
+            .section-content p {
+                max-width: 100%;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
             }
 
             /* Key players grid */

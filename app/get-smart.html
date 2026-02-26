@@ -602,6 +602,126 @@
         .delay-4 { animation-delay: 0.4s; opacity: 0; }
         .delay-5 { animation-delay: 0.5s; opacity: 0; }
         .delay-6 { animation-delay: 0.6s; opacity: 0; }
+
+        /* ============================================
+           RESPONSIVE STYLES
+           ============================================ */
+
+        @media (max-width: 1024px) {
+            .progress-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .badge-preview {
+                flex-direction: row;
+                min-width: auto;
+                padding: 16px;
+                justify-content: flex-start;
+            }
+
+            .badge-container {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 0;
+                margin-right: 16px;
+            }
+
+            .badge-icon {
+                font-size: 24px;
+            }
+
+            .progress-stats {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 24px 16px;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .page-subtitle {
+                font-size: 14px;
+            }
+
+            .progress-overview {
+                padding: 16px;
+            }
+
+            .progress-stats {
+                gap: 16px;
+            }
+
+            .stat-value {
+                font-size: 22px;
+            }
+
+            .module-card {
+                grid-template-columns: auto 1fr;
+                gap: 12px;
+                padding: 16px;
+            }
+
+            .module-action {
+                grid-column: 1 / -1;
+                justify-self: stretch;
+            }
+
+            .module-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .module-number {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+
+            .module-title {
+                font-size: 14px;
+            }
+
+            .module-description {
+                font-size: 12px;
+            }
+
+            .module-meta {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 24px;
+            }
+
+            .stat-value {
+                font-size: 18px;
+            }
+
+            .stat-label {
+                font-size: 11px;
+            }
+
+            .badge-preview {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .badge-container {
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+
+            .track-badge {
+                font-size: 10px;
+            }
+        }
     </style>
 </head>
 <body>

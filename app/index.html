@@ -2156,6 +2156,257 @@
             background: var(--accent-secondary);
             border-color: var(--accent-secondary);
         }
+
+        /* ============================================
+           RESPONSIVE STYLES
+           ============================================ */
+
+        /* Tablet breakpoint */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .industries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .primer-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .primer-toc {
+                display: none;
+            }
+
+            .flow-row {
+                flex-wrap: wrap;
+                gap: var(--space-md);
+            }
+
+            .flow-node {
+                min-width: 160px;
+                padding: var(--space-md);
+            }
+        }
+
+        /* Mobile breakpoint */
+        @media (max-width: 768px) {
+            /* Hide desktop sidebar, show mobile nav */
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                width: 280px;
+                transition: left 0.3s ease;
+                z-index: 200;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            /* Mobile header adjustments */
+            .header {
+                padding: 0 var(--space-md);
+            }
+
+            .search-container {
+                display: none;
+            }
+
+            .header-left::before {
+                content: '☰';
+                font-size: 20px;
+                cursor: pointer;
+                padding: var(--space-sm);
+                margin-right: var(--space-sm);
+            }
+
+            /* Content padding */
+            .content {
+                padding: var(--space-md);
+            }
+
+            /* Greeting */
+            .greeting {
+                font-size: 24px;
+            }
+
+            /* Stack grids */
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .industries-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            /* Staffed section mobile */
+            .staffed-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .staffed-btn {
+                width: 100%;
+            }
+
+            /* Continue learning cards */
+            .continue-cards {
+                flex-direction: column;
+            }
+
+            /* Trending grid mobile */
+            .trending-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Healthcare page mobile */
+            .hero-content {
+                padding: var(--space-xl) var(--space-md);
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: var(--space-md);
+            }
+
+            .hero-cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-cta-buttons .cta-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Money flow diagram mobile */
+            .money-flow-diagram {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .flow-row {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+
+            .flow-node {
+                min-width: 100%;
+            }
+
+            .flow-bottom {
+                flex-direction: column;
+            }
+
+            /* Data tables mobile - horizontal scroll */
+            .data-table-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin: var(--space-lg) calc(-1 * var(--space-md));
+                padding: 0 var(--space-md);
+            }
+
+            .data-table {
+                min-width: 500px;
+            }
+
+            /* Primer layout mobile */
+            .primer-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .primer-toc {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            /* Card adjustments */
+            .card-header {
+                padding: var(--space-md);
+            }
+
+            .card-body {
+                padding: var(--space-md);
+            }
+
+            /* Industry cards */
+            .industry-card {
+                padding: var(--space-md);
+            }
+
+            /* Jargon grid mobile */
+            .jargon-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            .greeting {
+                font-size: 20px;
+            }
+
+            .hero-title {
+                font-size: 24px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stat-item {
+                width: 100%;
+            }
+
+            .card-title {
+                font-size: 10px;
+            }
+
+            .industry-name {
+                font-size: 14px;
+            }
+
+            .industry-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-xs);
+            }
+        }
+
+        /* Mobile menu overlay */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 150;
+        }
+
+        .mobile-overlay.active {
+            display: block;
+        }
     </style>
 </head>
 <body>

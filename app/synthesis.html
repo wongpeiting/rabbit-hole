@@ -741,6 +741,112 @@
         .delay-3 { animation-delay: 0.3s; opacity: 0; }
         .delay-4 { animation-delay: 0.4s; opacity: 0; }
         .delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+        /* ============================================
+           RESPONSIVE STYLES
+           ============================================ */
+
+        @media (max-width: 1024px) {
+            .synthesis-page {
+                max-width: 100%;
+            }
+
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .synthesis-page {
+                padding: 24px 16px;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .page-subtitle {
+                font-size: 14px;
+            }
+
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 16px;
+                justify-content: flex-start;
+            }
+
+            .stat-divider {
+                display: none;
+            }
+
+            .stat-item {
+                flex: 0 0 45%;
+            }
+
+            .lead-story {
+                padding: 20px;
+            }
+
+            .lead-title {
+                font-size: 20px;
+            }
+
+            .lead-summary {
+                font-size: 14px;
+            }
+
+            .so-what-box {
+                padding: 16px;
+            }
+
+            .sources-row {
+                flex-wrap: wrap;
+            }
+
+            .story-card {
+                padding: 16px;
+            }
+
+            .story-title {
+                font-size: 16px;
+            }
+
+            .bottom-nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 24px;
+            }
+
+            .page-label {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .stat-item {
+                flex: 0 0 100%;
+            }
+
+            .lead-title {
+                font-size: 18px;
+            }
+
+            .story-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+        }
     </style>
 </head>
 <body>

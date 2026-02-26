@@ -637,19 +637,39 @@
 
         @media (max-width: 768px) {
             .page-container {
+                width: 100%;
                 max-width: 100%;
                 padding: 24px 16px;
             }
 
+            .page-header {
+                width: 100%;
+            }
+
             .page-title {
                 font-size: 28px;
+                width: 100%;
             }
 
             .page-subtitle {
                 font-size: 14px;
+                max-width: 100%;
+                width: 100%;
             }
 
             .progress-overview {
+                padding: 16px;
+                width: 100%;
+            }
+
+            .modules-section {
+                width: 100%;
+            }
+
+            .module-card {
+                width: 100%;
+                grid-template-columns: auto 1fr;
+                gap: 12px;
                 padding: 16px;
             }
 
@@ -659,12 +679,6 @@
 
             .stat-value {
                 font-size: 22px;
-            }
-
-            .module-card {
-                grid-template-columns: auto 1fr;
-                gap: 12px;
-                padding: 16px;
             }
 
             .module-action {

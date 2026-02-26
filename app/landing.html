@@ -1060,6 +1060,12 @@
         }
 
         @media (max-width: 768px) {
+            /* Prevent horizontal overflow */
+            html, body {
+                overflow-x: hidden;
+                max-width: 100vw;
+            }
+
             nav {
                 padding: 16px 24px;
             }

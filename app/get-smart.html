@@ -818,12 +818,20 @@
     </div>
 
     <script>
+        // Module button click handlers - navigate to primer content
+        document.querySelectorAll('.module-btn:not([disabled])').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                window.location.href = 'index.html?view=healthcare';
+            });
+        });
+
         // Module card interactions
         document.querySelectorAll('.module-card:not(.locked)').forEach(card => {
             card.addEventListener('click', function(e) {
                 if (!e.target.classList.contains('module-btn')) {
                     const btn = this.querySelector('.module-btn');
-                    if (btn) btn.click();
+                    if (btn && !btn.disabled) btn.click();
                 }
             });
         });

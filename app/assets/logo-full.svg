@@ -1,0 +1,52 @@
+<svg viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background rounded rectangle -->
+  <rect width="320" height="80" rx="12" fill="#4CA77B"/>
+
+  <!-- ===== R with rabbit features ===== -->
+  <!-- Left ear -->
+  <path d="M28 6 C26 3, 30 1, 32 5 C34 10, 33 18, 32 24 L32 32"
+        stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Right ear -->
+  <path d="M38 6 C36 3, 40 1, 42 5 C44 10, 43 18, 42 24 L41 32"
+        stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- R vertical -->
+  <path d="M22 34 L22 72" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- R bowl -->
+  <path d="M22 34 L38 34 C50 34, 54 40, 54 46 C54 53, 48 58, 38 58 L22 58"
+        stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- R leg -->
+  <path d="M36 58 L56 72" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Eye -->
+  <circle cx="44" cy="46" r="2.5" fill="white"/>
+  <!-- Tail -->
+  <path d="M58 68 C62 65, 61 71, 65 68" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- ===== A ===== -->
+  <path d="M78 72 L90 34 L102 72 M82 60 L98 60" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ===== B ===== -->
+  <path d="M114 72 L114 34 L128 34 C136 34, 140 38, 140 44 C140 48, 138 50, 134 51 C140 52, 144 56, 144 62 C144 68, 138 72, 128 72 L114 72"
+        stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ===== B ===== -->
+  <path d="M156 72 L156 34 L170 34 C178 34, 182 38, 182 44 C182 48, 180 50, 176 51 C182 52, 186 56, 186 62 C186 68, 180 72, 170 72 L156 72"
+        stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ===== I ===== -->
+  <path d="M198 34 L198 72" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- ===== T ===== -->
+  <path d="M212 34 L236 34 M224 34 L224 72" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- ===== H ===== -->
+  <path d="M248 34 L248 72 M248 53 L268 53 M268 34 L268 72" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- ===== O ===== -->
+  <ellipse cx="288" cy="53" rx="12" ry="19" stroke="white" stroke-width="3.5" fill="none"/>
+
+  <!-- ===== L ===== -->
+  <path d="M308 34 L308 72" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- ===== E ===== -->
+  <!-- Note: Truncated for width, full logo would continue -->
+</svg>

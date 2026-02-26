@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabbit Hole - Get Smart, Fast</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: #161616;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent-primary: #4CA77B;
+            --accent-secondary: #3d9169;
+            --accent-glow: rgba(76, 167, 123, 0.4);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+        }
+
+        .nav-logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-logo-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 0.12em;
+        }
+
+        /* Rabbit animations - matching index.html */
+        @keyframes rabbitHop {
+            0% { transform: translateY(30px) scale(0.8); opacity: 0; }
+            50% { transform: translateY(-8px) scale(1.05); }
+            70% { transform: translateY(2px) scale(0.98); }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        @keyframes rabbitBounce {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-6px) rotate(-3deg); }
+            50% { transform: translateY(-10px); }
+            75% { transform: translateY(-4px) rotate(3deg); }
+        }
+
+        @keyframes earWiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        @keyframes tailWag {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(8deg); }
+            75% { transform: rotate(-8deg); }
+        }
+
+        @keyframes eyeBlink {
+            0%, 95%, 100% { transform: scaleY(1); }
+            97.5% { transform: scaleY(0.1); }
+        }
+
+        .nav-logo-icon {
+            animation: rabbitHop 0.6s ease-out;
+        }
+
+        .nav-logo-icon:hover {
+            animation: rabbitBounce 0.5s ease-in-out;
+        }
+
+        /* Left ear */
+        .nav-logo-icon svg path:nth-child(1) {
+            transform-origin: 30px 20px;
+            animation: earWiggle 2s ease-in-out infinite;
+        }
+
+        /* Right ear */
+        .nav-logo-icon svg path:nth-child(2) {
+            transform-origin: 44px 20px;
+            animation: earWiggle 2s ease-in-out infinite 0.15s;
+        }
+
+        /* Eye blink */
+        .nav-logo-icon svg circle {
+            transform-origin: center;
+            animation: eyeBlink 4s ease-in-out infinite 2s;
+        }
+
+        /* Tail wag */
+        .nav-logo-icon svg path:nth-child(7),
+        .nav-logo-icon svg path:nth-child(8) {
+            transform-origin: 74px 97px;
+            animation: tailWag 1.2s ease-in-out infinite;
+        }
+
+        /* FAST 6-second showcase - 4 sections */
+        @keyframes showcaseScroll {
+            0%, 24% { transform: translateY(-60px); }        /* Hero + CTA */
+            25%, 49% { transform: translateY(-550px); }      /* Key Players table */
+            50%, 74% { transform: translateY(-1000px); }     /* Money Flow diagram */
+            75%, 100% { transform: translateY(-1650px); }    /* Jargon grid */
+        }
+
+        .hero-visual iframe {
+            animation: showcaseScroll 6s linear infinite;
+        }
+
+        /* Add a subtle glow pulse to draw attention */
+        .hero-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            box-shadow: inset 0 0 60px rgba(76, 167, 123, 0.1);
+            pointer-events: none;
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Feature callout labels */
+        .feature-callouts {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .callout {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 16px 32px;
+            background: #000;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            border-radius: 12px;
+            opacity: 0;
+            border: 2px solid var(--accent-primary);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(76, 167, 123, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* FAST callouts synced with 6s animation - 4 sections */
+        .callout-1, .callout-2, .callout-3, .callout-4 {
+            bottom: 30px;
+        }
+
+        .callout-1 { animation: c1 6s linear infinite; }
+        .callout-2 { animation: c2 6s linear infinite; }
+        .callout-3 { animation: c3 6s linear infinite; }
+        .callout-4 { animation: c4 6s linear infinite; }
+
+        @keyframes c1 {
+            0% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+            3% { transform: translateX(-50%) scale(1); }
+            22% { opacity: 1; }
+            25%, 100% { opacity: 0; transform: translateX(-50%); }
+        }
+        @keyframes c2 {
+            0%, 24% { opacity: 0; transform: translateX(-50%); }
+            26% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+            29% { transform: translateX(-50%) scale(1); }
+            47% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+        @keyframes c3 {
+            0%, 49% { opacity: 0; transform: translateX(-50%); }
+            51% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+            54% { transform: translateX(-50%) scale(1); }
+            72% { opacity: 1; }
+            75%, 100% { opacity: 0; }
+        }
+        @keyframes c4 {
+            0%, 74% { opacity: 0; transform: translateX(-50%); }
+            76% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+            79% { transform: translateX(-50%) scale(1); }
+            97% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .btn-ghost:hover {
+            color: var(--text-primary);
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-glow), transparent 60%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease 0.1s backwards;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent-primary), #6ee7b7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 22px);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 48px;
+            animation: fadeInUp 0.6s ease 0.2s backwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            animation: fadeInUp 0.6s ease 0.3s backwards;
+        }
+
+        .hero-cta .btn-primary {
+            padding: 16px 32px;
+            font-size: 16px;
+        }
+
+        .hero-cta .btn-ghost {
+            padding: 16px 24px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-visual {
+            margin-top: 80px;
+            position: relative;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+            width: 90vw;
+            max-width: 1400px;
+            height: 550px;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5), 0 0 60px rgba(76, 167, 123, 0.2);
+        }
+
+        .hero-visual iframe {
+            width: 100%;
+            height: 3000px;
+            border: none;
+            pointer-events: none;
+        }
+
+        .hero-visual svg {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-visual img {
+            width: 100%;
+            max-width: 1100px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            inset: 19px;
+            background: linear-gradient(180deg, var(--accent-primary), transparent);
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Logos Section */
+        .logos {
+            padding: 60px 40px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logos-label {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 32px;
+        }
+
+        .logos-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            opacity: 0.5;
+        }
+
+        .logo-item {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 120px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .problem h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            max-width: 700px;
+        }
+
+        .problem-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 60px;
+        }
+
+        .problem-quote {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .problem-quote::before {
+            content: '"';
+            font-family: 'Space Grotesk', serif;
+            font-size: 120px;
+            color: var(--accent-primary);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .problem-quote p {
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .problem-quote-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .problem-quote-avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--accent-muted);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .problem-quote-info span {
+            display: block;
+        }
+
+        .problem-quote-info .name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .problem-quote-info .role {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .problem-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .problem-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .problem-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .problem-item h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .problem-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 120px 40px;
+            background: var(--bg-secondary);
+        }
+
+        .solution-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .solution-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .solution h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .solution-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-primary);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 120px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .how-it-works-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .how-it-works h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            right: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0.3;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin: 0 auto 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 120px 40px;
+            background: var(--bg-secondary);
+        }
+
+        .pricing-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .pricing h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .pricing-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent-primary);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-primary);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 16px;
+            border-radius: 100px;
+        }
+
+        .pricing-tier {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price .currency {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .pricing-price .amount {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 56px;
+            font-weight: 700;
+        }
+
+        .pricing-price .period {
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .pricing-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            text-align: center;
+            padding: 14px;
+        }
+
+        .pricing-card .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .pricing-card .btn-outline:hover {
+            border-color: var(--accent-primary);
+            background: rgba(76, 167, 123, 0.1);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 120px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .testimonials h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .testimonial-stars {
+            color: #fbbf24;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            color: var(--text-secondary);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .testimonial-info .name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .testimonial-info .role {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 120px 40px;
+            background: linear-gradient(180deg, var(--bg-secondary), var(--bg-primary));
+            text-align: center;
+        }
+
+        .cta-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .cta .btn-primary {
+            padding: 18px 40px;
+            font-size: 18px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .features-grid,
+            .pricing-grid,
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps::before {
+                display: none;
+            }
+
+            .problem-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 24px 60px;
+            }
+
+            .features-grid,
+            .pricing-grid,
+            .testimonials-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">
+                <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Left ear -->
+                    <path d="M28 5 C26 2, 30 0, 32 3 C34 8, 33 18, 32 28 L32 35"
+                          stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <!-- Right ear -->
+                    <path d="M42 5 C40 2, 44 0, 46 3 C48 8, 47 18, 46 28 L44 35"
+                          stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <!-- R vertical stroke -->
+                    <path d="M22 38 L22 110"
+                          stroke="white" stroke-width="5" stroke-linecap="round"/>
+                    <!-- R bowl/head -->
+                    <path d="M22 38 L45 38 C62 38, 68 48, 68 55 C68 65, 58 72, 45 72 L22 72"
+                          stroke="white" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- R leg/kick -->
+                    <path d="M42 72 L72 110"
+                          stroke="white" stroke-width="5" stroke-linecap="round"/>
+                    <!-- Eye -->
+                    <circle cx="50" cy="55" r="3.5" fill="white"/>
+                    <!-- Tail wiggle -->
+                    <path d="M74 100 C80 96, 78 104, 82 100"
+                          stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    <path d="M78 94 C84 90, 82 98, 86 94"
+                          stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <span class="nav-logo-text">RABBITHOLE</span>
+        </a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#testimonials">Testimonials</a>
+        </div>
+        <div class="nav-cta">
+            <a href="#" class="btn btn-ghost">Log In</a>
+            <a href="#" class="btn btn-primary">Start Free Trial</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Trusted by 2,000+ professionals at top firms
+        </div>
+        <h1>Get smart on any industry.<br><span class="highlight">Fast.</span></h1>
+        <p class="hero-subtitle">The knowledge platform for consultants, bankers, and strategists who need to become industry experts on short timelines.</p>
+        <div class="hero-cta">
+            <a href="index.html" class="btn btn-primary">Start Free Trial</a>
+            <a href="#" class="btn btn-ghost">
+                <span>Watch Demo</span>
+                <span>▶</span>
+            </a>
+        </div>
+        <div class="hero-visual">
+            <iframe src="index.html?view=healthcare" title="Rabbit Hole App"></iframe>
+            <div class="feature-callouts">
+                <div class="callout callout-1">GET SMART IN 2.5 HOURS</div>
+                <div class="callout callout-2">KEY PLAYERS MAPPED</div>
+                <div class="callout callout-3">FOLLOW THE MONEY</div>
+                <div class="callout callout-4">DECODE THE JARGON</div>
+            </div>
+            <!-- SVG fallback below, hidden by default -->
+            <svg viewBox="0 0 1100 650" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                <!-- Background -->
+                <rect width="1100" height="650" fill="#0a0a0a"/>
+
+                <!-- Sidebar -->
+                <rect x="0" y="0" width="240" height="650" fill="#111111"/>
+                <rect x="239" y="0" width="1" height="650" fill="#222"/>
+
+                <!-- Logo in sidebar -->
+                <rect x="20" y="20" width="200" height="44" rx="8" fill="#4CA77B"/>
+                <text x="55" y="48" font-family="Arial" font-size="16" font-weight="bold" fill="white">RABBIT HOLE</text>
+
+                <!-- Nav items -->
+                <rect x="16" y="100" width="208" height="40" rx="8" fill="#4CA77B" fill-opacity="0.15"/>
+                <circle cx="36" cy="120" r="6" fill="#4CA77B"/>
+                <text x="52" y="125" font-family="Arial" font-size="13" fill="white">Dashboard</text>
+
+                <circle cx="36" cy="160" r="6" fill="#333"/>
+                <text x="52" y="165" font-family="Arial" font-size="13" fill="#888">Weekly Synthesis</text>
+                <rect x="190" y="152" width="24" height="18" rx="4" fill="#333"/>
+                <text x="198" y="164" font-family="Arial" font-size="10" fill="#888">3</text>
+
+                <circle cx="36" cy="200" r="6" fill="#333"/>
+                <text x="52" y="205" font-family="Arial" font-size="13" fill="#888">Industry Primers</text>
+
+                <circle cx="36" cy="240" r="6" fill="#333"/>
+                <text x="52" y="245" font-family="Arial" font-size="13" fill="#888">Get Smart Tracks</text>
+
+                <!-- Industries label -->
+                <text x="20" y="300" font-family="Arial" font-size="11" fill="#555" letter-spacing="1">INDUSTRIES</text>
+
+                <circle cx="36" cy="330" r="6" fill="#4CA77B"/>
+                <text x="52" y="335" font-family="Arial" font-size="13" fill="#aaa">Healthcare</text>
+                <rect x="180" y="322" width="30" height="18" rx="4" fill="#1a1a1a"/>
+                <text x="188" y="334" font-family="Arial" font-size="10" fill="#4CA77B">12</text>
+
+                <circle cx="36" cy="365" r="6" fill="#ec4899"/>
+                <text x="52" y="370" font-family="Arial" font-size="13" fill="#aaa">Financial Services</text>
+
+                <circle cx="36" cy="400" r="6" fill="#8b5cf6"/>
+                <text x="52" y="405" font-family="Arial" font-size="13" fill="#aaa">Technology</text>
+
+                <circle cx="36" cy="435" r="6" fill="#f59e0b"/>
+                <text x="52" y="440" font-family="Arial" font-size="13" fill="#aaa">Energy</text>
+
+                <!-- User section -->
+                <rect x="16" y="590" width="208" height="50" rx="8" fill="#1a1a1a"/>
+                <circle cx="46" cy="615" r="18" fill="#4CA77B"/>
+                <text x="40" y="620" font-family="Arial" font-size="12" font-weight="bold" fill="white">JC</text>
+                <text x="72" y="610" font-family="Arial" font-size="12" font-weight="500" fill="white">Jordan Chen</text>
+                <text x="72" y="625" font-family="Arial" font-size="10" fill="#666">Associate, McKinsey</text>
+
+                <!-- Main content area -->
+                <!-- Header -->
+                <rect x="240" y="0" width="860" height="60" fill="#0f0f0f"/>
+                <rect x="240" y="59" width="860" height="1" fill="#222"/>
+
+                <!-- Breadcrumb -->
+                <text x="270" y="36" font-family="Arial" font-size="12" fill="#666">Home</text>
+                <text x="305" y="36" font-family="Arial" font-size="12" fill="#444">/</text>
+                <text x="320" y="36" font-family="Arial" font-size="12" fill="white">Dashboard</text>
+
+                <!-- Search bar -->
+                <rect x="500" y="16" width="300" height="32" rx="8" fill="#1a1a1a"/>
+                <text x="520" y="37" font-family="Arial" font-size="12" fill="#555">Search industries, topics...</text>
+                <rect x="760" y="22" width="28" height="20" rx="4" fill="#222"/>
+                <text x="766" y="36" font-family="Arial" font-size="10" fill="#666">⌘K</text>
+
+                <!-- Live indicator -->
+                <circle cx="850" cy="32" r="4" fill="#4CA77B"/>
+                <text x="860" y="36" font-family="Arial" font-size="11" fill="#4CA77B">Live</text>
+
+                <!-- Greeting -->
+                <text x="270" y="110" font-family="Georgia" font-size="28" font-weight="bold" fill="white">Good morning, Jordan</text>
+                <text x="270" y="135" font-family="Arial" font-size="13" fill="#888">You're tracking <tspan fill="white" font-weight="600">5 industries</tspan> · Last updated 12 minutes ago</text>
+
+                <!-- Just Got Staffed Card -->
+                <rect x="270" y="160" width="550" height="70" rx="12" fill="#4CA77B" fill-opacity="0.1"/>
+                <rect x="270" y="160" width="550" height="70" rx="12" stroke="#4CA77B" stroke-opacity="0.3" fill="none"/>
+                <text x="295" y="190" font-family="Arial" font-size="16" fill="white">🚀</text>
+                <text x="320" y="192" font-family="Arial" font-size="14" font-weight="600" fill="white">Just got staffed on something new?</text>
+                <rect x="295" y="205" width="200" height="28" rx="6" fill="#1a1a1a"/>
+                <text x="310" y="224" font-family="Arial" font-size="12" fill="#666">Select an industry...</text>
+                <rect x="510" y="205" width="130" height="28" rx="6" fill="#4CA77B"/>
+                <text x="525" y="224" font-family="Arial" font-size="12" font-weight="600" fill="white">Get me up to speed →</text>
+
+                <!-- Continue Learning Card -->
+                <rect x="270" y="245" width="550" height="65" rx="12" fill="#161616"/>
+                <rect x="270" y="245" width="550" height="65" rx="12" stroke="#222" fill="none"/>
+                <text x="290" y="270" font-family="Arial" font-size="11" fill="#666" letter-spacing="0.5">CONTINUE LEARNING</text>
+                <text x="720" y="270" font-family="Arial" font-size="11" fill="#4CA77B">View all →</text>
+                <rect x="290" y="280" width="36" height="24" rx="6" fill="#4CA77B" fill-opacity="0.15"/>
+                <text x="300" y="297" font-family="Arial" font-size="14">🏥</text>
+                <text x="335" y="293" font-family="Arial" font-size="13" font-weight="500" fill="white">Healthcare 101</text>
+                <text x="440" y="293" font-family="Arial" font-size="11" fill="#666">Module 3: The Jargon</text>
+                <text x="750" y="293" font-family="Arial" font-size="14" font-weight="bold" fill="#4CA77B">42%</text>
+
+                <!-- Industries Grid -->
+                <text x="270" y="350" font-family="Arial" font-size="14" font-weight="600" fill="white">Your Industries</text>
+                <text x="780" y="350" font-family="Arial" font-size="12" fill="#4CA77B">Manage →</text>
+
+                <!-- Industry cards row -->
+                <rect x="270" y="365" width="130" height="90" rx="10" fill="#161616"/>
+                <rect x="270" y="365" width="130" height="90" rx="10" stroke="#4CA77B" stroke-opacity="0.3" fill="none"/>
+                <text x="290" y="400" font-family="Arial" font-size="24">🏥</text>
+                <text x="290" y="425" font-family="Arial" font-size="11" font-weight="500" fill="white">Healthcare</text>
+                <circle cx="290" cy="443" r="3" fill="#4CA77B"/>
+                <text x="298" y="447" font-family="Arial" font-size="10" fill="#666">12 new</text>
+
+                <rect x="410" y="365" width="130" height="90" rx="10" fill="#161616"/>
+                <text x="430" y="400" font-family="Arial" font-size="24">💳</text>
+                <text x="430" y="425" font-family="Arial" font-size="11" font-weight="500" fill="white">Financial Services</text>
+                <circle cx="430" cy="443" r="3" fill="#ec4899"/>
+                <text x="438" y="447" font-family="Arial" font-size="10" fill="#666">8 new</text>
+
+                <rect x="550" y="365" width="130" height="90" rx="10" fill="#161616"/>
+                <text x="570" y="400" font-family="Arial" font-size="24">⚡</text>
+                <text x="570" y="425" font-family="Arial" font-size="11" font-weight="500" fill="white">Technology</text>
+                <circle cx="570" cy="443" r="3" fill="#8b5cf6"/>
+                <text x="578" y="447" font-family="Arial" font-size="10" fill="#666">15 new</text>
+
+                <rect x="690" y="365" width="130" height="90" rx="10" fill="#161616"/>
+                <text x="710" y="400" font-family="Arial" font-size="24">🔋</text>
+                <text x="710" y="425" font-family="Arial" font-size="11" font-weight="500" fill="white">Energy</text>
+                <circle cx="710" cy="443" r="3" fill="#f59e0b"/>
+                <text x="718" y="447" font-family="Arial" font-size="10" fill="#666">6 new</text>
+
+                <!-- Trending section -->
+                <text x="270" y="495" font-family="Arial" font-size="14" fill="white">🔥 Trending in your industries</text>
+
+                <rect x="270" y="510" width="550" height="36" rx="6" fill="#1a1a1a"/>
+                <rect x="280" y="518" width="20" height="20" rx="4" fill="linear-gradient(135deg, #fbbf24, #f59e0b)"/>
+                <text x="286" y="533" font-family="Arial" font-size="11" font-weight="bold" fill="#1a1a1a">1</text>
+                <text x="310" y="533" font-family="Arial" font-size="12" fill="white">GLP-1 Drug Wars</text>
+                <rect x="420" y="521" width="65" height="16" rx="4" fill="#4CA77B" fill-opacity="0.2"/>
+                <text x="430" y="532" font-family="Arial" font-size="9" fill="#4CA77B">HEALTHCARE</text>
+                <text x="770" y="533" font-family="Arial" font-size="11" fill="#4CA77B">↑ 340%</text>
+
+                <rect x="270" y="550" width="550" height="36" rx="6" fill="#1a1a1a"/>
+                <rect x="280" y="558" width="20" height="20" rx="4" fill="#64748b"/>
+                <text x="286" y="573" font-family="Arial" font-size="11" font-weight="bold" fill="white">2</text>
+                <text x="310" y="573" font-family="Arial" font-size="12" fill="white">AI Agent Infrastructure</text>
+                <rect x="455" y="561" width="40" height="16" rx="4" fill="#8b5cf6" fill-opacity="0.2"/>
+                <text x="463" y="572" font-family="Arial" font-size="9" fill="#a78bfa">TECH</text>
+                <text x="770" y="573" font-family="Arial" font-size="11" fill="#4CA77B">↑ 215%</text>
+
+                <rect x="270" y="590" width="550" height="36" rx="6" fill="#1a1a1a"/>
+                <rect x="280" y="598" width="20" height="20" rx="4" fill="#a0522d"/>
+                <text x="286" y="613" font-family="Arial" font-size="11" font-weight="bold" fill="white">3</text>
+                <text x="310" y="613" font-family="Arial" font-size="12" fill="white">BNPL Consolidation</text>
+                <rect x="438" y="601" width="55" height="16" rx="4" fill="#ec4899" fill-opacity="0.2"/>
+                <text x="446" y="612" font-family="Arial" font-size="9" fill="#f472b6">FINTECH</text>
+                <text x="770" y="613" font-family="Arial" font-size="11" fill="#4CA77B">↑ 180%</text>
+
+                <!-- Right sidebar cards -->
+                <!-- Progress card -->
+                <rect x="840" y="160" width="240" height="180" rx="12" fill="#161616"/>
+                <text x="860" y="190" font-family="Arial" font-size="14" font-weight="600" fill="white">Healthcare 101</text>
+                <rect x="980" y="175" width="70" height="20" rx="10" fill="#4CA77B" fill-opacity="0.15"/>
+                <text x="990" y="189" font-family="Arial" font-size="10" fill="#4CA77B">In Progress</text>
+                <text x="860" y="220" font-family="Arial" font-size="11" fill="#666">Get Smart Track</text>
+                <text x="1030" y="220" font-family="Arial" font-size="11" fill="#4CA77B">42%</text>
+                <rect x="860" y="230" width="200" height="6" rx="3" fill="#1a1a1a"/>
+                <rect x="860" y="230" width="84" height="6" rx="3" fill="#4CA77B"/>
+
+                <text x="878" y="265" font-family="Arial" font-size="11" fill="#4CA77B">✓</text>
+                <text x="895" y="265" font-family="Arial" font-size="11" fill="#888">The Money Flow</text>
+                <text x="878" y="285" font-family="Arial" font-size="11" fill="#4CA77B">✓</text>
+                <text x="895" y="285" font-family="Arial" font-size="11" fill="#888">Key Players</text>
+                <circle cx="882" cy="302" r="4" stroke="#4CA77B" fill="none" stroke-width="2"/>
+                <text x="895" y="305" font-family="Arial" font-size="11" fill="white">The Jargon</text>
+                <circle cx="882" cy="322" r="4" stroke="#333" fill="none"/>
+                <text x="895" y="325" font-family="Arial" font-size="11" fill="#555">Recent Disruption</text>
+
+                <!-- Highlights card -->
+                <rect x="840" y="355" width="240" height="275" rx="12" fill="#161616"/>
+                <text x="860" y="385" font-family="Arial" font-size="14" font-weight="600" fill="white">This Week's Highlights</text>
+                <text x="1020" y="385" font-family="Arial" font-size="11" fill="#4CA77B">View All →</text>
+
+                <text x="860" y="420" font-family="Arial" font-size="10" fill="#4CA77B">FEB 24</text>
+                <text x="900" y="420" font-family="Arial" font-size="11" fill="white">Lilly's Zepbound gets</text>
+                <text x="900" y="435" font-family="Arial" font-size="11" fill="white">high-dose approval</text>
+                <rect x="900" y="442" width="60" height="14" rx="3" fill="#4CA77B" fill-opacity="0.15"/>
+                <text x="908" y="452" font-family="Arial" font-size="9" fill="#4CA77B">Healthcare</text>
+
+                <rect x="860" y="465" width="200" height="1" fill="#222"/>
+
+                <text x="860" y="490" font-family="Arial" font-size="10" fill="#4CA77B">FEB 23</text>
+                <text x="900" y="490" font-family="Arial" font-size="11" fill="white">FTC sues to block</text>
+                <text x="900" y="505" font-family="Arial" font-size="11" fill="white">UnitedHealth deal</text>
+                <rect x="900" y="512" width="60" height="14" rx="3" fill="#4CA77B" fill-opacity="0.15"/>
+                <text x="908" y="522" font-family="Arial" font-size="9" fill="#4CA77B">Healthcare</text>
+
+                <rect x="860" y="535" width="200" height="1" fill="#222"/>
+
+                <text x="860" y="560" font-family="Arial" font-size="10" fill="#ec4899">FEB 22</text>
+                <text x="900" y="560" font-family="Arial" font-size="11" fill="white">Stripe raises $6.5B at</text>
+                <text x="900" y="575" font-family="Arial" font-size="11" fill="white">$65B valuation</text>
+                <rect x="900" y="582" width="50" height="14" rx="3" fill="#ec4899" fill-opacity="0.15"/>
+                <text x="908" y="592" font-family="Arial" font-size="9" fill="#ec4899">Fintech</text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Logos Section -->
+    <section class="logos">
+        <div class="logos-label">Trusted by professionals at</div>
+        <div class="logos-grid">
+            <span class="logo-item">McKinsey</span>
+            <span class="logo-item">Goldman Sachs</span>
+            <span class="logo-item">Bain</span>
+            <span class="logo-item">Morgan Stanley</span>
+            <span class="logo-item">BCG</span>
+            <span class="logo-item">JP Morgan</span>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <span class="section-label">The Problem</span>
+        <h2>You just got staffed on something you know nothing about.</h2>
+        <div class="problem-content">
+            <div class="problem-quote">
+                <p>I had 4 days to sound credible about healthcare M&A to a room full of hospital CFOs. I was Googling at midnight wondering if I'd make it.</p>
+                <div class="problem-quote-author">
+                    <div class="problem-quote-avatar">JC</div>
+                    <div class="problem-quote-info">
+                        <span class="name">Jordan Chen</span>
+                        <span class="role">Associate, McKinsey</span>
+                    </div>
+                </div>
+            </div>
+            <div class="problem-list">
+                <div class="problem-item">
+                    <div class="problem-icon">⏰</div>
+                    <div>
+                        <h4>No time to become an expert</h4>
+                        <p>You have days, maybe a week. Traditional learning paths take months.</p>
+                    </div>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">🌊</div>
+                    <div>
+                        <h4>Information overload</h4>
+                        <p>Hundreds of articles, reports, and sources with no clear structure.</p>
+                    </div>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">🎯</div>
+                    <div>
+                        <h4>Missing the "so what"</h4>
+                        <p>Raw news without synthesis. No one tells you what actually matters.</p>
+                    </div>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">📎</div>
+                    <div>
+                        <h4>Can't cite your sources</h4>
+                        <p>You need to back up every claim. "I read it somewhere" doesn't cut it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="features">
+        <div class="solution-inner">
+            <div class="solution-header">
+                <span class="section-label">The Solution</span>
+                <h2>Your unfair advantage</h2>
+                <p class="solution-subtitle">Everything you need to go from zero to conversant, fast.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Industry Primers</h3>
+                    <p>Structured overviews of key players, market dynamics, value chains, and industry jargon. The foundation you need.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📰</div>
+                    <h3>Weekly Synthesis</h3>
+                    <p>What happened this week, why it matters, and what to watch. The "so what" already extracted for you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Event Timelines</h3>
+                    <p>Visual chronology of major events, deals, and regulatory changes. See the story unfold.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Get Smart Tracks</h3>
+                    <p>Structured 2-3 hour learning paths. Go from zero to conversant with progress tracking.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Source-Linked Claims</h3>
+                    <p>Every fact citable. Click through to primary sources. Never get caught without receipts.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>Trending Topics</h3>
+                    <p>See what's generating buzz across industries. Know what might come up before it does.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="how-it-works-header">
+            <span class="section-label">How It Works</span>
+            <h2>From staffed to smart in 4 steps</h2>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Get Staffed</h4>
+                <p>You're assigned to a new project in an unfamiliar industry.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Select Industry</h4>
+                <p>Tell us what you need to learn. We've got 50+ industries covered.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Get Smart</h4>
+                <p>Complete a structured track or dive into specific topics.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Sound Credible</h4>
+                <p>Walk into that meeting with confidence and citable insights.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-inner">
+            <div class="pricing-header">
+                <span class="section-label">Pricing</span>
+                <h2>Invest in your career</h2>
+                <p class="pricing-subtitle">Less than the cost of one client dinner.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-tier">Explorer</div>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">10</span>
+                        <span class="period">/mo</span>
+                    </div>
+                    <p class="pricing-desc">For curious professionals</p>
+                    <ul class="pricing-features">
+                        <li>Curated topic hubs</li>
+                        <li>Limited deep-dive explainers</li>
+                        <li>Audio summaries</li>
+                        <li>Knowledge tracker (gamified)</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Start Exploring</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-tier">Professional</div>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">25</span>
+                        <span class="period">/mo</span>
+                    </div>
+                    <p class="pricing-desc">For those whose work benefits from being informed</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Explorer</li>
+                        <li>Structured knowledge briefings</li>
+                        <li>Weekly synthesis reports</li>
+                        <li>Topic timelines</li>
+                        <li>"What changed this week" intelligence</li>
+                        <li>Source-linked citations</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Start Free Trial</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-tier">Executive</div>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">80</span>
+                        <span class="period">/mo</span>
+                    </div>
+                    <p class="pricing-desc">Bloomberg Terminal-lite for decision makers</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Professional</li>
+                        <li>Multi-source dossiers</li>
+                        <li>Early signals dashboards</li>
+                        <li>Private briefings</li>
+                        <li>Expert AMAs</li>
+                        <li>Downloadable research packs</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-header">
+            <span class="section-label">Testimonials</span>
+            <h2>Loved by top professionals</h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"I used to spend my first week on any project just trying to get up to speed. Now I show up day one already knowing the landscape. Game changer."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">SK</div>
+                    <div class="testimonial-info">
+                        <span class="name">Sarah Kim</span>
+                        <span class="role">Engagement Manager, BCG</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"The source linking is incredible. I can actually cite where I got information from. My partners have noticed the difference in my work quality."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">MR</div>
+                    <div class="testimonial-info">
+                        <span class="name">Michael Rodriguez</span>
+                        <span class="role">Associate, Goldman Sachs</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Finally, someone who understands that we don't have 6 months to become experts. The Get Smart tracks are exactly what we needed."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">AL</div>
+                    <div class="testimonial-info">
+                        <span class="name">Amanda Liu</span>
+                        <span class="role">VP, Morgan Stanley</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-inner">
+            <h2>Ready to go down the rabbit hole?</h2>
+            <p>Join 2,000+ professionals who've transformed how they learn about new industries.</p>
+            <a href="index.html" class="btn btn-primary">Start Your Free Trial</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <div class="nav-logo-icon">
+                    <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M28 5 C26 2, 30 0, 32 3 C34 8, 33 18, 32 28 L32 35"
+                              stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                        <path d="M42 5 C40 2, 44 0, 46 3 C48 8, 47 18, 46 28 L44 35"
+                              stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                        <path d="M22 38 L22 110"
+                              stroke="white" stroke-width="5" stroke-linecap="round"/>
+                        <path d="M22 38 L45 38 C62 38, 68 48, 68 55 C68 65, 58 72, 45 72 L22 72"
+                              stroke="white" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M42 72 L72 110"
+                              stroke="white" stroke-width="5" stroke-linecap="round"/>
+                        <circle cx="50" cy="55" r="3.5" fill="white"/>
+                        <path d="M74 100 C80 96, 78 104, 82 100"
+                              stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <path d="M78 94 C84 90, 82 98, 86 94"
+                              stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span class="nav-logo-text">RABBITHOLE</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+            <div class="footer-copy">© 2026 Rabbit Hole. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html>

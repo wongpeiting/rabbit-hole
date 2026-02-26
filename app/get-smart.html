@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Smart: Healthcare 101 | RABBIT HOLE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #18181b;
+            --bg-elevated: #1f1f23;
+            --bg-hover: #27272a;
+            --accent-primary: #4CA77B;
+            --accent-secondary: #3d9169;
+            --accent-muted: rgba(76, 167, 123, 0.15);
+            --accent-glow: rgba(76, 167, 123, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --text-muted: #52525b;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --error: #f87171;
+            --info: #60a5fa;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-default: rgba(255, 255, 255, 0.1);
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --healthcare: #10b981;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .page-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        /* Header */
+        .page-header {
+            margin-bottom: 48px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .track-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .track-badge-icon {
+            font-size: 14px;
+        }
+
+        .track-badge-text {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--healthcare);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: 42px;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .page-subtitle {
+            font-size: 16px;
+            color: var(--text-tertiary);
+            margin-bottom: 32px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* Progress Overview */
+        .progress-overview {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            padding: 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            margin-bottom: 48px;
+        }
+
+        .progress-main {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .progress-stats {
+            display: flex;
+            gap: 32px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-value {
+            font-family: var(--font-mono);
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .stat-value .highlight {
+            color: var(--accent-primary);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .progress-bar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .progress-bar-label {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-bar-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar-percent {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-hover);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Badge Preview */
+        .badge-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            min-width: 180px;
+        }
+
+        .badge-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 16px;
+        }
+
+        .badge-ring {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid var(--bg-hover);
+            position: relative;
+        }
+
+        .badge-ring::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--accent-primary);
+            border-right-color: var(--accent-primary);
+            transform: rotate(108deg);
+        }
+
+        .badge-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 36px;
+            filter: grayscale(0.5);
+            opacity: 0.6;
+            transition: all 0.3s;
+        }
+
+        .badge-preview.completed .badge-icon {
+            filter: grayscale(0);
+            opacity: 1;
+            animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes badgePop {
+            0% { transform: translate(-50%, -50%) scale(0.5); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .badge-name {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-align: center;
+        }
+
+        .badge-preview.completed .badge-name {
+            color: var(--accent-primary);
+        }
+
+        .badge-status {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Modules Grid */
+        .modules-section {
+            margin-bottom: 48px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .modules-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .module-card {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 20px;
+            padding: 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--bg-hover);
+            transition: background 0.2s;
+        }
+
+        .module-card.completed::before {
+            background: var(--success);
+        }
+
+        .module-card.current::before {
+            background: var(--accent-primary);
+            animation: pulseBar 2s infinite;
+        }
+
+        @keyframes pulseBar {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .module-card:hover {
+            border-color: var(--border-default);
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .module-card.locked {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .module-card.locked:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .module-number {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            font-family: var(--font-mono);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            transition: all 0.2s;
+        }
+
+        .module-card.completed .module-number {
+            background: rgba(74, 222, 128, 0.15);
+            color: var(--success);
+        }
+
+        .module-card.current .module-number {
+            background: var(--accent-muted);
+            color: var(--accent-primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+            50% { box-shadow: 0 0 0 8px transparent; }
+        }
+
+        .module-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .module-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .module-format {
+            padding: 3px 8px;
+            background: var(--bg-hover);
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .module-desc {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            line-height: 1.5;
+        }
+
+        .module-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 4px;
+        }
+
+        .module-time {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .module-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .module-status {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .module-card.completed .module-status {
+            color: var(--success);
+        }
+
+        .module-card.current .module-status {
+            color: var(--accent-primary);
+        }
+
+        .module-card.locked .module-status {
+            color: var(--text-muted);
+        }
+
+        .module-btn {
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .module-btn:hover {
+            background: var(--bg-hover);
+            border-color: var(--border-default);
+        }
+
+        .module-card.current .module-btn {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        .module-card.current .module-btn:hover {
+            background: var(--accent-secondary);
+        }
+
+        /* What You'll Learn */
+        .learn-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 48px;
+        }
+
+        .learn-title {
+            font-family: var(--font-display);
+            font-size: 24px;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .learn-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .learn-item {
+            display: flex;
+            gap: 12px;
+            padding: 16px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+        }
+
+        .learn-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .learn-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 32px;
+            background: linear-gradient(135deg, var(--accent-muted), transparent);
+            border: 1px solid rgba(76, 167, 123, 0.2);
+            border-radius: 16px;
+        }
+
+        .cta-text {
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        .cta-text strong {
+            color: var(--accent-primary);
+        }
+
+        .cta-btn {
+            padding: 12px 24px;
+            background: var(--accent-primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--bg-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeUp 0.5s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
+        .delay-6 { animation-delay: 0.6s; opacity: 0; }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <header class="page-header animate">
+            <a href="index.html" class="back-link">← Back to Dashboard</a>
+            <div class="track-badge">
+                <span class="track-badge-icon">🎓</span>
+                <span class="track-badge-text">Get Smart Track</span>
+            </div>
+            <h1 class="page-title">Healthcare 101</h1>
+            <p class="page-subtitle">Go from zero to conversant in healthcare in 2.5 hours. Structured modules, real examples, and a credential to prove you did the work.</p>
+        </header>
+
+        <!-- Progress Overview -->
+        <div class="progress-overview animate delay-1">
+            <div class="progress-main">
+                <div class="progress-stats">
+                    <div class="stat-item">
+                        <span class="stat-value"><span class="highlight">2</span>/6</span>
+                        <span class="stat-label">Modules completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">50<span class="highlight">min</span></span>
+                        <span class="stat-label">Time invested</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">1<span class="highlight">hr</span> 40<span class="highlight">min</span></span>
+                        <span class="stat-label">Remaining</span>
+                    </div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-label">
+                        <span class="progress-bar-text">Overall progress</span>
+                        <span class="progress-bar-percent">33%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 33%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="badge-preview">
+                <div class="badge-container">
+                    <div class="badge-ring"></div>
+                    <span class="badge-icon">🏥</span>
+                </div>
+                <span class="badge-name">Healthcare Fluent</span>
+                <span class="badge-status">Complete all modules to unlock</span>
+            </div>
+        </div>
+
+        <!-- Modules -->
+        <section class="modules-section">
+            <div class="section-header">
+                <span class="section-title">Modules</span>
+            </div>
+            <div class="modules-grid">
+                <!-- Module 1: Completed -->
+                <div class="module-card completed animate delay-1">
+                    <div class="module-number">✓</div>
+                    <div class="module-content">
+                        <div class="module-header">
+                            <h3 class="module-title">The Money Flow</h3>
+                            <span class="module-format">Interactive + Explainer</span>
+                        </div>
+                        <p class="module-desc">How $4.5T moves from employers → payers → providers → pharma. Understand who pays whom and why incentives are misaligned.</p>
+                        <div class="module-meta">
+                            <span class="module-time">⏱ 20 min</span>
+                        </div>
+                    </div>
+                    <div class="module-actions">
+                        <span class="module-status">Completed</span>
+                        <button class="module-btn">Review →</button>
+                    </div>
+                </div>
+
+                <!-- Module 2: Completed -->
+                <div class="module-card completed animate delay-2">
+                    <div class="module-number">✓</div>
+                    <div class="module-content">
+                        <div class="module-header">
+                            <h3 class="module-title">The Players</h3>
+                            <span class="module-format">Primer + Profiles</span>
+                        </div>
+                        <p class="module-desc">Who the major companies are in each sector, how they make money, and the competitive dynamics shaping each market.</p>
+                        <div class="module-meta">
+                            <span class="module-time">⏱ 30 min</span>
+                        </div>
+                    </div>
+                    <div class="module-actions">
+                        <span class="module-status">Completed</span>
+                        <button class="module-btn">Review →</button>
+                    </div>
+                </div>
+
+                <!-- Module 3: Current -->
+                <div class="module-card current animate delay-3">
+                    <div class="module-number">3</div>
+                    <div class="module-content">
+                        <div class="module-header">
+                            <h3 class="module-title">The Jargon</h3>
+                            <span class="module-format">Flashcard Quiz</span>
+                        </div>
+                        <p class="module-desc">PBM, formulary, 340B, ASC, biosimilar—test yourself on the terms you'll hear in every healthcare conversation.</p>
+                        <div class="module-meta">
+                            <span class="module-time">⏱ 15 min</span>
+                        </div>
+                    </div>
+                    <div class="module-actions">
+                        <span class="module-status">In Progress</span>
+                        <button class="module-btn">Continue →</button>
+                    </div>
+                </div>
+
+                <!-- Module 4: Locked -->
+                <div class="module-card animate delay-4">
+                    <div class="module-number">4</div>
+                    <div class="module-content">
+                        <div class="module-header">
+                            <h3 class="module-title">Current Dynamics</h3>
+                            <span class="module-format">Curated Articles</span>
+                        </div>
+                        <p class="module-desc">GLP-1 disruption, FTC antitrust scrutiny, value-based care shift—the forces reshaping healthcare right now.</p>
+                        <div class="module-meta">
+                            <span class="module-time">⏱ 40 min</span>
+                        </div>
+                    </div>
+                    <div class="module-actions">
+                        <span class="module-status">Up Next</span>
+                        <button class="module-btn">Start →</button>
+                    </div>
+                </div>
+
+                <!-- Module 5: Locked -->
+                <div class="module-card animate delay-5">
+                    <div class="module-number">5</div>
+                    <div class="module-content">
+                        <div class="module-header">
+                            <h3 class="module-title">What to Watch</h3>
+                            <span class="module-format">Synthesis + Timeline</span>
+                        </div>
+                        <p class="module-desc">This week's news in context. Major events, deals, and regulatory actions—and why they matter.</p>
+                        <div class="module-meta">
+                            <span class="module-time">⏱ 20 min</span>
+                        </div>
+                    </div>
+                    <div class="module-actions">
+                        <span class="module-status">Locked</span>
+                        <button class="module-btn" disabled>Start →</button>
+                    </div>
+                </div>
+
+                <!-- Module 6: Locked -->
+                <div class="module-card animate delay-6">
+                    <div class="module-number">6</div>
+                    <div class="module-content">
+                        <div class="module-header">
+                            <h3 class="module-title">Sound Smart</h3>
+                            <span class="module-format">Cheat Sheet</span>
+                        </div>
+                        <p class="module-desc">Five observations that signal you've done your homework. The talking points that make you sound like you know the space.</p>
+                        <div class="module-meta">
+                            <span class="module-time">⏱ 15 min</span>
+                        </div>
+                    </div>
+                    <div class="module-actions">
+                        <span class="module-status">Locked</span>
+                        <button class="module-btn" disabled>Start →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You'll Learn -->
+        <section class="learn-section animate">
+            <h2 class="learn-title">What you'll be able to do after this track</h2>
+            <div class="learn-grid">
+                <div class="learn-item">
+                    <span class="learn-icon">🗣️</span>
+                    <span class="learn-text">Hold your own in a client meeting with healthcare executives</span>
+                </div>
+                <div class="learn-item">
+                    <span class="learn-icon">📊</span>
+                    <span class="learn-text">Explain how money flows through the US healthcare system</span>
+                </div>
+                <div class="learn-item">
+                    <span class="learn-icon">🏢</span>
+                    <span class="learn-text">Name the major players in each sector and their business models</span>
+                </div>
+                <div class="learn-item">
+                    <span class="learn-icon">📈</span>
+                    <span class="learn-text">Discuss current trends like GLP-1 drugs and value-based care intelligently</span>
+                </div>
+                <div class="learn-item">
+                    <span class="learn-icon">⚖️</span>
+                    <span class="learn-text">Understand the regulatory landscape and who controls what</span>
+                </div>
+                <div class="learn-item">
+                    <span class="learn-icon">💬</span>
+                    <span class="learn-text">Use industry jargon correctly without second-guessing yourself</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-section animate">
+            <span class="cta-text">Ready to continue? You're <strong>15 minutes</strong> away from completing Module 3.</span>
+            <button class="cta-btn">
+                Continue Learning
+                <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Module card interactions
+        document.querySelectorAll('.module-card:not(.locked)').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('module-btn')) {
+                    const btn = this.querySelector('.module-btn');
+                    if (btn) btn.click();
+                }
+            });
+        });
+
+        // Animate progress bar on load
+        setTimeout(() => {
+            document.querySelector('.progress-fill').style.width = '33%';
+        }, 500);
+
+        // Badge ring progress (33% = ~120 degrees)
+        // This would be dynamically calculated based on actual progress
+    </script>
+</body>
+</html>

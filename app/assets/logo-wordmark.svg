@@ -1,0 +1,70 @@
+<svg viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background rounded rectangle -->
+  <rect x="5" y="10" width="390" height="80" rx="12" fill="#4CA77B"/>
+
+  <!-- R with rabbit ears and eye -->
+  <g transform="translate(20, 18)">
+    <!-- Left ear -->
+    <path d="M12 4 C10 1, 14 -1, 16 3 C18 8, 17 16, 16 22" stroke="white" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <!-- Right ear -->
+    <path d="M24 4 C22 1, 26 -1, 28 3 C30 8, 29 16, 28 22" stroke="white" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <!-- R body -->
+    <path d="M8 26 L8 64" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    <path d="M8 26 L28 26 Q42 26 42 38 Q42 50 28 50 L8 50" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M26 50 L44 64" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    <!-- Eye -->
+    <circle cx="32" cy="38" r="3" fill="white"/>
+    <!-- Tail wiggle -->
+    <path d="M46 58 Q52 54 50 62 Q48 68 54 64" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- A -->
+  <g transform="translate(78, 18)">
+    <path d="M0 64 L16 26 L32 64" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6 52 L26 52" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- B -->
+  <g transform="translate(118, 18)">
+    <path d="M0 64 L0 26 L18 26 Q28 26 28 34 Q28 40 22 42 Q30 44 30 52 Q30 64 18 64 L0 64" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- B -->
+  <g transform="translate(156, 18)">
+    <path d="M0 64 L0 26 L18 26 Q28 26 28 34 Q28 40 22 42 Q30 44 30 52 Q30 64 18 64 L0 64" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- I -->
+  <g transform="translate(194, 18)">
+    <path d="M8 26 L8 64" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- T -->
+  <g transform="translate(212, 18)">
+    <path d="M0 26 L28 26" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    <path d="M14 26 L14 64" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- H -->
+  <g transform="translate(248, 18)">
+    <path d="M0 26 L0 64" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    <path d="M0 45 L24 45" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    <path d="M24 26 L24 64" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- O -->
+  <g transform="translate(284, 18)">
+    <ellipse cx="14" cy="45" rx="14" ry="19" stroke="white" stroke-width="4" fill="none"/>
+  </g>
+
+  <!-- L -->
+  <g transform="translate(320, 18)">
+    <path d="M0 26 L0 64 L22 64" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- E -->
+  <g transform="translate(350, 18)">
+    <path d="M24 26 L0 26 L0 64 L24 64" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M0 45 L18 45" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

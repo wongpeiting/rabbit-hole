@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Synthesis | RABBIT HOLE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #18181b;
+            --bg-elevated: #1f1f23;
+            --bg-hover: #27272a;
+            --accent-primary: #4CA77B;
+            --accent-secondary: #3d9169;
+            --accent-muted: rgba(76, 167, 123, 0.15);
+            --accent-glow: rgba(76, 167, 123, 0.4);
+            --brand-teal: #4CA77B;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --text-muted: #52525b;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --error: #f87171;
+            --info: #60a5fa;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-default: rgba(255, 255, 255, 0.1);
+            --border-accent: rgba(212, 165, 116, 0.3);
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --healthcare: #10b981;
+            --fintech: #6366f1;
+            --tech: #ec4899;
+            --energy: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .synthesis-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        /* Header */
+        .page-header {
+            margin-bottom: 48px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .page-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .industry-tag {
+            padding: 4px 10px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--healthcare);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .date-range {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 400;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .page-subtitle {
+            font-size: 16px;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            gap: 32px;
+            padding: 20px 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            margin-bottom: 48px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-value {
+            font-family: var(--font-mono);
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .stat-divider {
+            width: 1px;
+            background: var(--border-subtle);
+        }
+
+        /* Lead Story */
+        .lead-story {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), transparent);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lead-story::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--healthcare);
+        }
+
+        .lead-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: var(--healthcare);
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--bg-primary);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .lead-title {
+            font-family: var(--font-display);
+            font-size: 28px;
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .lead-summary {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .lead-summary .highlight {
+            background: var(--accent-muted);
+            padding: 1px 4px;
+            border-radius: 3px;
+            color: var(--text-primary);
+        }
+
+        /* So What Box */
+        .so-what-box {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+        }
+
+        .so-what-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--accent-primary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .so-what-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* Sources */
+        .sources-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .sources-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .source-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: var(--bg-hover);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .source-chip:hover {
+            background: var(--bg-elevated);
+            border-color: var(--border-default);
+            color: var(--text-primary);
+        }
+
+        .source-chip::before {
+            content: '↗';
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        /* Story Grid */
+        .stories-section {
+            margin-bottom: 48px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .story-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .story-card:hover {
+            border-color: var(--border-default);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .story-date {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .story-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .story-excerpt {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .story-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .story-tag {
+            padding: 3px 8px;
+            background: var(--bg-hover);
+            border-radius: 3px;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .story-sources {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        /* Deal Tracker */
+        .deals-section {
+            margin-bottom: 48px;
+        }
+
+        .deals-table {
+            width: 100%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .deals-table th {
+            text-align: left;
+            padding: 16px 20px;
+            background: var(--bg-tertiary);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .deals-table td {
+            padding: 16px 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .deals-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .deals-table tr:hover td {
+            background: var(--bg-tertiary);
+        }
+
+        .deal-parties {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .deal-arrow {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .deal-acquirer {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .deal-target {
+            color: var(--text-secondary);
+        }
+
+        .deal-value {
+            font-family: var(--font-mono);
+            font-weight: 500;
+            color: var(--accent-primary);
+        }
+
+        .deal-status {
+            display: inline-flex;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .deal-status.closed {
+            background: rgba(74, 222, 128, 0.15);
+            color: var(--success);
+        }
+
+        .deal-status.pending {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--warning);
+        }
+
+        .deal-status.blocked {
+            background: rgba(248, 113, 113, 0.15);
+            color: var(--error);
+        }
+
+        /* Chart of the Week */
+        .chart-section {
+            margin-bottom: 48px;
+        }
+
+        .chart-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .chart-title {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .chart-container {
+            display: flex;
+            gap: 16px;
+            height: 200px;
+            margin-bottom: 16px;
+        }
+
+        .chart-y-axis {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-muted);
+            padding: 4px 0;
+            text-align: right;
+            min-width: 40px;
+        }
+
+        .chart-bars {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            gap: 16px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-subtle);
+            position: relative;
+        }
+
+        .bar-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .bar {
+            width: 100%;
+            max-width: 60px;
+            height: var(--height);
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 6px 6px 0 0;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: growBar 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            transform-origin: bottom;
+        }
+
+        @keyframes growBar {
+            from {
+                transform: scaleY(0);
+            }
+            to {
+                transform: scaleY(1);
+            }
+        }
+
+        .bar-group:nth-child(1) .bar { animation-delay: 0.1s; }
+        .bar-group:nth-child(2) .bar { animation-delay: 0.2s; }
+        .bar-group:nth-child(3) .bar { animation-delay: 0.3s; }
+        .bar-group:nth-child(4) .bar { animation-delay: 0.4s; }
+        .bar-group:nth-child(5) .bar { animation-delay: 0.5s; }
+
+        .bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent-primary);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .bar-group:hover .bar::after {
+            opacity: 1;
+        }
+
+        .bar-group.highlight .bar {
+            background: linear-gradient(180deg, var(--accent-primary), #2d8a5e);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .bar-group.highlight .bar::after {
+            opacity: 1;
+        }
+
+        .bar-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-tertiary);
+            position: absolute;
+            bottom: -24px;
+        }
+
+        .bar-group.highlight .bar-label {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .chart-source {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .chart-insight {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: var(--accent-muted);
+            border: 1px solid rgba(76, 167, 123, 0.2);
+            border-radius: 8px;
+        }
+
+        .insight-icon {
+            font-size: 16px;
+        }
+
+        .insight-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Watch List */
+        .watch-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 48px;
+        }
+
+        .watch-title {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .watch-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .watch-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+        }
+
+        .watch-date {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--accent-primary);
+            min-width: 60px;
+        }
+
+        .watch-content {
+            flex: 1;
+        }
+
+        .watch-event {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .watch-context {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        /* Navigation */
+        .nav-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border-default);
+            color: var(--text-primary);
+        }
+
+        .nav-btn.primary {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: var(--bg-primary);
+            font-weight: 500;
+        }
+
+        .nav-btn.primary:hover {
+            background: var(--accent-secondary);
+            border-color: var(--accent-secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeUp 0.5s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
+    </style>
+</head>
+<body>
+    <div class="synthesis-page">
+        <!-- Header -->
+        <header class="page-header animate">
+            <a href="index.html" class="back-link">← Back to Dashboard</a>
+            <div class="page-label">
+                <span class="industry-tag">Healthcare</span>
+                <span class="date-range">Feb 17 – 23, 2026</span>
+            </div>
+            <h1 class="page-title">Weekly Synthesis</h1>
+            <p class="page-subtitle">The most important developments in healthcare this week, synthesized from 47 sources across 12 publications.</p>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-bar animate delay-1">
+            <div class="stat-item">
+                <span class="stat-value">47</span>
+                <span class="stat-label">Sources analyzed</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-value">12</span>
+                <span class="stat-label">Publications</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-value">3</span>
+                <span class="stat-label">Major deals</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-value">8 min</span>
+                <span class="stat-label">Read time</span>
+            </div>
+        </div>
+
+        <!-- Lead Story -->
+        <article class="lead-story animate delay-2">
+            <span class="lead-badge">◆ Lead Story</span>
+            <h2 class="lead-title">Lilly's Zepbound Gets High-Dose Approval; Payers Brace for Budget Impact</h2>
+            <p class="lead-summary">
+                FDA approved a higher-dose formulation of Eli Lilly's Zepbound (tirzepatide) for obesity, showing <span class="highlight">26% average weight loss</span> in Phase 3 trials—the highest efficacy yet demonstrated in an approved obesity drug. UnitedHealthcare and CVS Caremark both signaled they'll cover it but with prior authorization requirements.
+            </p>
+            <p class="lead-summary">
+                Analyst estimates suggest that if just 10% of eligible patients get on GLP-1s, payer drug spend could increase <span class="highlight">15-20%</span>. The coverage decisions made in the coming months will shape whether GLP-1s become mass-market treatments or stay restricted to severe cases.
+            </p>
+
+            <div class="so-what-box">
+                <div class="so-what-label">→ The So What</div>
+                <p class="so-what-text">Watch for employer pushback on premium increases. The tension between clinical evidence (these drugs work) and economic reality (they're expensive at scale) will define healthcare economics for the next decade.</p>
+            </div>
+
+            <div class="sources-row">
+                <span class="sources-label">Sources:</span>
+                <a href="#" class="source-chip">STAT News</a>
+                <a href="#" class="source-chip">Reuters</a>
+                <a href="#" class="source-chip">Lilly Press Release</a>
+                <a href="#" class="source-chip">NEJM</a>
+            </div>
+        </article>
+
+        <!-- More Stories -->
+        <section class="stories-section animate delay-3">
+            <div class="section-header">
+                <span class="section-title">Also This Week</span>
+            </div>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-date">FEB 23</div>
+                    <h3 class="story-title">FTC Sues to Block UnitedHealth-Amedisys Deal</h3>
+                    <p class="story-excerpt">FTC filed suit to block UnitedHealth's $3.3B acquisition of home health company Amedisys, citing market concentration concerns in home health services.</p>
+                    <div class="story-meta">
+                        <span class="story-tag">M&A</span>
+                        <span class="story-sources">5 sources</span>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-date">FEB 22</div>
+                    <h3 class="story-title">Pfizer Cuts 2026 Guidance by $2B</h3>
+                    <p class="story-excerpt">Pfizer lowered revenue guidance citing faster-than-expected Paxlovid decline and biosimilar pressure on older drugs. Pipeline anxiety intensifies.</p>
+                    <div class="story-meta">
+                        <span class="story-tag">Earnings</span>
+                        <span class="story-sources">4 sources</span>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-date">FEB 21</div>
+                    <h3 class="story-title">CMS Proposes Site-Neutral Payment Expansion</h3>
+                    <p class="story-excerpt">New proposed rule would pay hospitals the same rate as outpatient facilities for more procedures, accelerating the site-of-care shift.</p>
+                    <div class="story-meta">
+                        <span class="story-tag">Regulation</span>
+                        <span class="story-sources">3 sources</span>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-date">FEB 20</div>
+                    <h3 class="story-title">Novo Nordisk Manufacturing Update</h3>
+                    <p class="story-excerpt">Novo announced $4.1B additional investment in US manufacturing capacity for GLP-1 drugs, signaling continued supply constraints through 2027.</p>
+                    <div class="story-meta">
+                        <span class="story-tag">Supply Chain</span>
+                        <span class="story-sources">3 sources</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deal Tracker -->
+        <section class="deals-section animate delay-4">
+            <div class="section-header">
+                <span class="section-title">Deal Tracker</span>
+            </div>
+            <table class="deals-table">
+                <thead>
+                    <tr>
+                        <th>Deal</th>
+                        <th>Value</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="deal-parties">
+                                <span class="deal-acquirer">UnitedHealth</span>
+                                <span class="deal-arrow">→</span>
+                                <span class="deal-target">Amedisys</span>
+                            </div>
+                        </td>
+                        <td class="deal-value">$3.3B</td>
+                        <td><span class="deal-status blocked">FTC Suing</span></td>
+                        <td>Home health consolidation; antitrust challenge</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="deal-parties">
+                                <span class="deal-acquirer">AbbVie</span>
+                                <span class="deal-arrow">→</span>
+                                <span class="deal-target">Cerevel</span>
+                            </div>
+                        </td>
+                        <td class="deal-value">$8.7B</td>
+                        <td><span class="deal-status pending">FTC Review</span></td>
+                        <td>Neuroscience pipeline bet</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="deal-parties">
+                                <span class="deal-acquirer">Merck</span>
+                                <span class="deal-arrow">→</span>
+                                <span class="deal-target">EyeBio</span>
+                            </div>
+                        </td>
+                        <td class="deal-value">$3.0B</td>
+                        <td><span class="deal-status closed">Closed</span></td>
+                        <td>Ophthalmology pipeline add</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Chart of the Week -->
+        <section class="chart-section animate delay-4">
+            <div class="section-header">
+                <span class="section-title">Chart of the Week</span>
+            </div>
+            <div class="chart-card">
+                <h4 class="chart-title">GLP-1 Market Growth (US)</h4>
+                <div class="chart-container">
+                    <div class="chart-y-axis">
+                        <span>$50B</span>
+                        <span>$40B</span>
+                        <span>$30B</span>
+                        <span>$20B</span>
+                        <span>$10B</span>
+                        <span>$0</span>
+                    </div>
+                    <div class="chart-bars">
+                        <div class="bar-group">
+                            <div class="bar" style="--height: 16%;" data-value="$8B">
+                                <div class="bar-fill"></div>
+                            </div>
+                            <span class="bar-label">2022</span>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="--height: 30%;" data-value="$15B">
+                                <div class="bar-fill"></div>
+                            </div>
+                            <span class="bar-label">2023</span>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="--height: 50%;" data-value="$25B">
+                                <div class="bar-fill"></div>
+                            </div>
+                            <span class="bar-label">2024</span>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" style="--height: 70%;" data-value="$35B">
+                                <div class="bar-fill"></div>
+                            </div>
+                            <span class="bar-label">2025</span>
+                        </div>
+                        <div class="bar-group highlight">
+                            <div class="bar" style="--height: 96%;" data-value="$48B">
+                                <div class="bar-fill"></div>
+                            </div>
+                            <span class="bar-label">2026(E)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-source">Source: IQVIA, Analyst Estimates</div>
+                <div class="chart-insight">
+                    <span class="insight-icon">💡</span>
+                    <span class="insight-text">GLP-1 drugs are on track to become the largest drug class in history, driven by Wegovy and Zepbound adoption. The 2026 estimate assumes continued supply constraints ease.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Watch Next Week -->
+        <section class="watch-section animate delay-5">
+            <h3 class="watch-title">📅 What to Watch Next Week</h3>
+            <div class="watch-list">
+                <div class="watch-item">
+                    <span class="watch-date">TUE</span>
+                    <div class="watch-content">
+                        <div class="watch-event">Novo Nordisk Q4 Earnings</div>
+                        <div class="watch-context">Wegovy supply update and 2026 guidance expected</div>
+                    </div>
+                </div>
+                <div class="watch-item">
+                    <span class="watch-date">WED</span>
+                    <div class="watch-content">
+                        <div class="watch-event">FDA Advisory Committee: Alzheimer's Drug</div>
+                        <div class="watch-context">Key vote on Biogen's follow-on therapy to Leqembi</div>
+                    </div>
+                </div>
+                <div class="watch-item">
+                    <span class="watch-date">FRI</span>
+                    <div class="watch-content">
+                        <div class="watch-event">CMS Final Rule: Site-Neutral Payments</div>
+                        <div class="watch-context">Expected release of final rule expanding site-neutral payment</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <nav class="nav-section">
+            <a href="#" class="nav-btn">← Previous Week</a>
+            <div style="display: flex; gap: 12px;">
+                <a href="#" class="nav-btn">⬇ Export PDF</a>
+                <a href="#" class="nav-btn primary">View Full Primer →</a>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        // Add intersection observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.story-card, .watch-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(16px)';
+            el.style.transition = 'all 0.4s ease-out';
+            observer.observe(el);
+        });
+
+        // Stagger animations
+        document.querySelectorAll('.story-card').forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
